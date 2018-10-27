@@ -2,12 +2,18 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
     use Sluggable;
+
+    const IS_DRAFT = 0;
+    const IS_PUBLIC = 1;
+
+    protected $fillable = ['title', 'content'];
     
     public function category()
     {
@@ -39,4 +45,3 @@ class Post extends Model
             ]
         ];
     }
-}
