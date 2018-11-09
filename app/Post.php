@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -13,16 +14,16 @@ class Post extends Model
     const IS_DRAFT = 0;
     const IS_PUBLIC = 1;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'date'];
     
     public function category()
     {
-    	return $this->hasOne(Category::class);
+    	return $this->belongsTo(Category::class);
     }
 
     public function author()
     {
-    	return $this->hasOne(User::class);
+    	return $this->belongsTo(User::class, 'user_id');
     }
 
     public function tags()
@@ -49,10 +50,10 @@ class Post extends Model
 
     public static function add($fields)
     {
-        $post -> new static;
+        $post = new static;
         $post->fill($fields);
         $post->user_id = 1;
-        $post-> = save();
+        $post->save();
 
         return $post;
     }
@@ -61,14 +62,12 @@ class Post extends Model
     public function edit($fields)
     {
         $this->fill($fields);
-        $this-> = save();
+        $this->save();
     }
 
     public function remove()
     {
-        // delete post img
-        Storage::delete('uploads/' . $this->image);
-        // delete post
+        $this->removeImage();
         $this->delete();
     }
 
@@ -76,11 +75,18 @@ class Post extends Model
     {
         if ($image == null) { return; }
 
-        Storage::delete('uploads/' . $this->image);
+        $this->removeImage();        
         $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
+        $image->storeAs('uploads', $filename);
         $this->image = $filename;
         $this->save();
+    }
+
+    public function removeImage()
+    {
+        if ($this->image != null) {
+            Storage::delete('uploads/' . $this->image);
+        }
     }
 
     public function getImage()
@@ -88,7 +94,7 @@ class Post extends Model
         if ($this->image == null) {
             return '/img/no-image.png';
         }
-        return '/uploads' . $this->image;
+        return '/uploads/' . $this->image;
     }
 
     public function setCategory($id)
@@ -99,7 +105,7 @@ class Post extends Model
         $this->save();
     }
 
-    public function saveTags($ids)
+    public function setTags($ids)
     {
         if ($ids == null) { return; }
 
@@ -151,6 +157,40 @@ class Post extends Model
         }
 
         return $this->setFeatured();
-
     }
+
+    public function setDateAttribute($value)
+    {
+       $date = Carbon::createFromFormat('d/m/y', $value)->format('Y-m-d');
+
+        $this->attributes['date'] = $date;
+    }
+
+    public function getDateAttribute($value)
+    {
+       $date = Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+
+        return $date;
+    }
+
+    public function getCategoryTitle()
+    {
+
+       return ($this->category != null)
+                ?   $this->category->title
+                :   'Нет категории';
+    }
+
+    public function getTagsTitles()
+    {
+
+
+
+       return (!$this->tags->isEmpty())
+               ?    implode(', ', $this->tags->pluck('title')->all())
+               :    'Нет тегов';
+    }
+
+
+
 }
