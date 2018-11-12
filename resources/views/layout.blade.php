@@ -50,6 +50,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav text-uppercase pull-right">
+
+
                     @if (Auth::check())
                         <li><a href="/profile">Мой аккаунт</a></li>
                         <li><a href="/logout">Выйти</a></li>
