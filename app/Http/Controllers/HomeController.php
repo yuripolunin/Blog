@@ -14,7 +14,9 @@ class HomeController extends Controller
 
     	$posts = Post::paginate(3);
 
-    	return view('pages.index', ['posts' => $posts]);
+
+    	return view('pages.index')->with('posts', $posts);
+
     }
 
     public function show($slug)
