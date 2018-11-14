@@ -1,7 +1,6 @@
 @extends('admin.layout')
 
 @section('content')
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,7 +13,7 @@
 
     <!-- Main content -->
     <section class="content">
-						{{Form::open(['route' => 'users.store', 'files' => true])}}
+		{{Form::open(['route'	=>	'users.store', 'files'	=>	true])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -45,17 +44,14 @@
       </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button class="btn btn-default">Назад</button>
           <button class="btn btn-success pull-right">Добавить</button>
         </div>
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-      {{Form::close()}}
-
+	{{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
 @endsection

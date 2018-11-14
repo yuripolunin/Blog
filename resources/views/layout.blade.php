@@ -44,22 +44,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav text-uppercase">
-                    <li><a href="/">Главная</a></li>
+                    <li><a href="/">Homepage</a></li>
                     <li><a href="about-me.html">ABOUT ME </a></li>
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav text-uppercase pull-right">
-
-
-                    @if (Auth::check())
-                        <li><a href="/profile">Мой аккаунт</a></li>
-                        <li><a href="/logout">Выйти</a></li>
-                    @else
-                        <li><a href="/register">Регистрация</a></li>
-                        <li><a href="/login">Войти</a></li>
-                    @endif
-                    
+                @if(Auth::check())
+                    <li><a href="/profile">My profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                @else
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                @endif
                     
                 </ul>
 
@@ -78,8 +75,18 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-
-@yield('content')
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               @if(session('status'))
+                    <div class="alert alert-info">
+                        {{session('status')}}
+                    </div>
+                @endif
+           </div>
+       </div>
+   </div>
+	@yield('content')
 
 <!--footer start-->
 <div id="footer">

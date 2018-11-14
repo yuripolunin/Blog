@@ -8,17 +8,18 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="/css/admin.css">
   <style>
-    table.table form {
-      display: inline-block;
-    }
-    button.delete {
-      background-color: transparent;
-      border: none;
-      color: #337ab7;
-      padding: 0;
-    }
-  </style>
-
+      table.table form
+      {
+        display: inline-block;
+      }
+      button.delete
+      {
+        background: transparent;
+        border: none;
+        color: #337ab7;
+        padding: 0px;
+      }
+    </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -211,15 +212,16 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      @include('admin._sidebar')
+     @include('admin._sidebar')
     </section>
     <!-- /.sidebar -->
   </aside>
 
   <!-- =============================================== -->
 
- @yield('content')
-<!-- /.content-wrapper -->
+  <!-- Content Wrapper. Contains page content -->
+  @yield('content')
+  <!-- /.content-wrapper -->
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -427,15 +429,14 @@
 <!-- ./wrapper -->
 
 <script src="/js/admin.js"></script>
-<script src="/js/icheck.min.js"></script>
 <script src="/plugins/ckeditor/ckeditor.js"></script>
 <script src="/plugins/ckfinder/ckfinder.js"></script>
 <script>
-  $(document).ready(function () {
-    var editor = CKEDITOR.replaceAll();
-    CKFinder.setupCKEditor(editor);
-  })
+    $(document).ready(function(){
+        var editor = CKEDITOR.replaceAll();
+        CKFinder.setupCKEditor( editor );
+    })
+
 </script>
 </body>
-
 </html>

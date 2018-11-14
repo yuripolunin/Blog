@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,8 +21,7 @@
           @include('admin.errors')
         </div>
         <div class="box-body">
-        	{{ Form::open(['route' => [
-        		'tags.update', $tag->id], 'method'=>'put']) }}
+        {{Form::open(['route'=>['tags.update',$tag->id], 'method'=>'put'])}}
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">Название</label>
@@ -32,7 +31,6 @@
       </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button class="btn btn-default">Назад</button>
           <button class="btn btn-warning pull-right">Изменить</button>
         </div>
         <!-- /.box-footer-->
@@ -44,4 +42,5 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
 @endsection

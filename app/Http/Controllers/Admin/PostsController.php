@@ -18,7 +18,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', ['posts' => $posts]);
+        return view('admin.posts.index', ['posts'=>$posts]);
     }
 
     /**
@@ -49,7 +49,7 @@ class PostsController extends Controller
             'title' =>'required',
             'content'   =>  'required',
             'date'  =>  'required',
-            'image' =>  'image'
+            'image' =>  'nullable|image'
         ]);
 
         $post = Post::add($request->all());
@@ -70,7 +70,6 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-
         $post = Post::find($id);
         $categories = Category::pluck('title', 'id')->all();
         $tags = Tag::pluck('title', 'id')->all();
@@ -98,7 +97,7 @@ class PostsController extends Controller
             'title' =>'required',
             'content'   =>  'required',
             'date'  =>  'required',
-            'image' =>  'image'
+            'image' =>  'nullable|image'
         ]);
 
         $post = Post::find($id);

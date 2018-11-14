@@ -1,7 +1,6 @@
 @extends('admin.layout')
 
 @section('content')
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -14,10 +13,10 @@
 
     <!-- Main content -->
     <section class="content">
-      {{Form::open([
-        'route' => 'posts.store',
-        'files' => true
-        ])}}
+	{{Form::open([
+		'route'	=> 'posts.store',
+		'files'	=>	true
+	])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -39,19 +38,19 @@
             </div>
             <div class="form-group">
               <label>Категория</label>
-              {{Form::select('category_id',
-                 $categories,
-                 null,
-                 ['class' => 'form-control select2'])
-               }}
+              {{Form::select('category_id', 
+              	$categories, 
+              	null, 
+              	['class' => 'form-control select2'])
+              }}
             </div>
             <div class="form-group">
               <label>Теги</label>
-              {{Form::select('tags[]',
-                 $tags,
-                 null,
-                 ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Выберите теги'])
-               }}
+              {{Form::select('tags[]', 
+              	$tags, 
+              	null, 
+              	['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
+              }}
             </div>
             <!-- Date -->
             <div class="form-group">
@@ -88,14 +87,14 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="exampleInputEmail1">Краткое описание</label>
-              <textarea name="description" id="" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
-            </div>
+              <label for="exampleInputEmail1">Описание</label>
+              <textarea name="description" id="" cols="30" rows="10" class="form-control" >{{old('description')}}</textarea>
           </div>
+        </div>
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputEmail1">Полный текст</label>
-              <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
+              <textarea name="content" id="" cols="30" rows="10" class="form-control" ></textarea>
           </div>
         </div>
       </div>
@@ -107,10 +106,9 @@
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-      {{Form::close()}}
+	{{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-   
 @endsection

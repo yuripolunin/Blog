@@ -14,11 +14,11 @@
 
     <!-- Main content -->
     <section class="content">
-						{{Form::open([
-							'route' => ['users.update', $user->id],
-							'method' => 'put',
-							'files' => true
-							])}}
+	{{Form::open([
+		'route'	=>	['users.update', $user->id],
+		'method'	=>	'put',
+		'files'	=>	true
+	])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -50,17 +50,14 @@
       </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button class="btn btn-default">Назад</button>
           <button class="btn btn-warning pull-right">Изменить</button>
         </div>
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-      {{Form::close()}}
-
+	{{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
 @endsection

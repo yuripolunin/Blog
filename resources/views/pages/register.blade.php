@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
 <!--main content start-->
 <div class="main-content">
     <div class="container">
@@ -14,7 +13,7 @@
                     @include('admin.errors')
                     <br>
                     <form class="form-horizontal contact-form" role="form" method="post" action="/register">
-                        {{csrf_field()}}
+                    {{csrf_field()}}
                         <div class="form-group">
                             <div class="col-md-12">
                                 <input type="text" class="form-control" id="name" name="name"
@@ -43,5 +42,4 @@
     </div>
 </div>
 <!-- end main content-->
-
 @endsection

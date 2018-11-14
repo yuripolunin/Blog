@@ -1,8 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -17,12 +16,10 @@
 
       <!-- Default box -->
       <div class="box">
-
-      	{!! Form::open(['route' => 'categories.store']) !!}
-
+      {!! Form::open(['route' => 'categories.store']) !!}
         <div class="box-header with-border">
           <h3 class="box-title">Добавляем категорию</h3>
-										@include('admin.errors')
+          @include('admin.errors')
         </div>
         <div class="box-body">
           <div class="col-md-6">
@@ -38,9 +35,7 @@
           <button class="btn btn-success pull-right">Добавить</button>
         </div>
         <!-- /.box-footer-->
-
         {!! Form::close() !!}
-
       </div>
       <!-- /.box -->
 
@@ -48,6 +43,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
-
-  @endsection
+@endsection

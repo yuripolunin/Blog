@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -39,23 +39,20 @@
                 </thead>
                 <tbody>
                 @foreach($tags as $tag)
-                <tr>
-                  <td>{{$tag->id}}</td>
-                  <td>{{$tag->title}}</td>
-                  <td><a href="{{route('tags.edit', $tag->id)}}" class="fa fa-pencil"></a>
+	                <tr>
+	                  <td>{{$tag->id}}</td>
+	                  <td>{{$tag->title}}</td>
+	                  <td><a href="{{route('tags.edit', $tag->id)}}" class="fa fa-pencil"></a> 
+					{{Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'delete'])}}
+	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
+	                   <i class="fa fa-remove"></i>
+	                  </button>
 
-                   {{Form::open(['route'=>['tags.destroy', $tag->id], 'method'=>'delete'])}}
-
-                    <button onclick="return confirm('are you sure?')" type="submit" class="delete"><i class="fa fa-remove"></i></button>
-
-                    
-
-                    {{Form::close()}}
-
-
-                  </td>
-                </tr>
+	                   {{Form::close()}}
+	                  </td>
+	                </tr>
                 @endforeach
+
                 </tfoot>
               </table>
             </div>

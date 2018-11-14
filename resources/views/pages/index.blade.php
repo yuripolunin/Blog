@@ -6,7 +6,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-
                 @foreach($posts as $post)
                 <article class="post">
                     <div class="post-thumb">
@@ -18,10 +17,9 @@
                     </div>
                     <div class="post-content">
                         <header class="entry-header text-center text-uppercase">
-                            @if($post->hasCategory())
-                            <h6><a href="{{route('category.show', $post->category->slug)}}">{{$post->getCategoryTitle()}}</a></h6>
-                            @endif
-
+                        @if($post->hasCategory())
+                            <h6><a href="{{route('category.show', $post->category->slug)}}"> {{$post->getCategoryTitle()}}</a></h6>
+                        @endif
                             <h1 class="entry-title"><a href="{{route('post.show', $post->slug)}}">{{$post->title}}</a></h1>
 
 
@@ -30,11 +28,11 @@
                             {!!$post->description!!}
 
                             <div class="btn-continue-reading text-center text-uppercase">
-                                <a href="{{route('post.show', $post->slug)}}" class="more-link">Читать далее</a>
+                                <a href="{{route('post.show', $post->slug)}}" class="more-link">Continue Reading</a>
                             </div>
                         </div>
                         <div class="social-share">
-                            <span class="social-share-title pull-left text-capitalize">Опубликовано <a href="#">{{$post->author->name}}</a> - {{$post->getDate()}}</span>
+                            <span class="social-share-title pull-left text-capitalize">By <a href="#">{{$post->author->name}}</a> On {{$post->getDate()}}</span>
                             <ul class="text-center pull-right">
                                 <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>

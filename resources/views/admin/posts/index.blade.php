@@ -1,7 +1,6 @@
 @extends('admin.layout')
 
 @section('content')
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -19,12 +18,10 @@
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
               <h3 class="box-title">Листинг сущности</h3>
-              @include('admin.errors')
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -43,22 +40,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach ($posts as $post)
+                @foreach($posts as $post)
                 <tr>
                   <td>{{$post->id}}</td>
-                  <td>{{$post->title}}
-                  </td>
+                  <td>{{$post->title}}</td>
                   <td>{{$post->getCategoryTitle()}}</td>
                   <td>{{$post->getTagsTitles()}}</td>
                   <td>
                     <img src="{{$post->getImage()}}" alt="" width="100">
                   </td>
-                  <td><a href="{{route('posts.edit', $post->id)}}" class="fa fa-pencil"></a> 
+                  <td>
+                  <a href="{{route('posts.edit', $post->id)}}" class="fa fa-pencil"></a> 
 
-                    {{Form::open(['route'=>['posts.destroy', $post->id], 'method'=>'delete'])}}
+                  {{Form::open(['route'=>['posts.destroy', $post->id], 'method'=>'delete'])}}
+	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
+	                   <i class="fa fa-remove"></i>
+	                  </button>
 
-                    <button onclick="return confirm('are you sure?')" type="submit" class="delete"><i class="fa fa-remove"></i></button>
-                    {{Form::close()}}
+	                   {{Form::close()}}
                   </td>
                 </tr>
                 @endforeach
@@ -68,11 +67,8 @@
             <!-- /.box-body -->
           </div>
       <!-- /.box -->
-
-
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-   
 @endsection

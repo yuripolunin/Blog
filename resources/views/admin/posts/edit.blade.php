@@ -1,8 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -14,16 +13,16 @@
 
     <!-- Main content -->
     <section class="content">
-            {{Form::open([
-              'route' => ['posts.update', $post->id],
-              'files' => true,
-              'method' => 'put'
-            ])}}
+	{{Form::open([
+		'route'	=>	['posts.update', $post->id],
+		'files'	=>	true,
+		'method'	=>	'put'
+	])}}
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Обновляем статью</h3>
-          @include('admin.errors')          
+          @include('admin.errors')
         </div>
         <div class="box-body">
           <div class="col-md-6">
@@ -41,19 +40,19 @@
             </div>
             <div class="form-group">
               <label>Категория</label>
-              {{Form::select('category_id',
-                 $categories,
-                 $post->getCategoryID(),
-                 ['class' => 'form-control select2'])
-               }}
+              {{Form::select('category_id', 
+              	$categories, 
+                $post->getCategoryID(), 
+              	['class' => 'form-control select2'])
+              }}
             </div>
             <div class="form-group">
               <label>Теги</label>
-              {{Form::select('tags[]',
-                 $tags,
-                 $selectedTags,
-                 ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Выберите теги'])
-               }}
+              {{Form::select('tags[]', 
+              	$tags, 
+              	$selectedTags, 
+              	['class' => 'form-control select2', 'multiple'=>'multiple','data-placeholder'=>'Выберите теги'])
+              }}
             </div>
             <!-- Date -->
             <div class="form-group">
@@ -71,7 +70,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <label>
-                {{Form::checkbox('is_featured', '1', $post->is_featured, ['class' => 'minimal'])}}
+              {{Form::checkbox('is_featured', '1', $post->is_featured, ['class'=>'minimal'])}}
               </label>
               <label>
                 Рекомендовать
@@ -80,7 +79,7 @@
             <!-- checkbox -->
             <div class="form-group">
               <label>
-                {{Form::checkbox('status', '1', $post->status, ['class' => 'minimal'])}}
+                {{Form::checkbox('status', '1', $post->status, ['class'=>'minimal'])}}
               </label>
               <label>
                 Черновик
@@ -89,29 +88,27 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
-              <label for="exampleInputEmail1">Краткое описание</label>
-              <textarea name="description" id="" cols="30" rows="10" class="form-control">{{$post->description}}</textarea>
-            </div>
+              <label for="exampleInputEmail1">Описание</label>
+              <textarea name="description" id="" cols="30" rows="10" class="form-control" >{{$post->description}}</textarea>
           </div>
+        </div>
           <div class="col-md-12">
             <div class="form-group">
               <label for="exampleInputEmail1">Полный текст</label>
-                  <textarea name="content" id="" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
+              <textarea name="content" id="" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
           </div>
         </div>
       </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button class="btn btn-default">Назад</button>
           <button class="btn btn-warning pull-right">Изменить</button>
         </div>
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
-        {{Form::close()}}
+	{{Form::close()}}
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-   
 @endsection

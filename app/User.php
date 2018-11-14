@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Storage;
+use \Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    
+
     const IS_BANNED = 1;
     const IS_ACTIVE = 0;
 
@@ -30,8 +30,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-
 
     public function posts()
     {
@@ -54,21 +52,18 @@ class User extends Authenticatable
 
     public function edit($fields)
     {
-        $this->fill($fields);
-        if ($fields['password'] != null) {
-            $this->password = bcrypt($fields['password']);
-        }
+        $this->fill($fields); //name,email
         
         $this->save();
     }
+
     public function generatePassword($password)
     {
-
-        if ($password != null) {
+        if($password != null)
+        {
             $this->password = bcrypt($password);
             $this->save();
         }
-        
     }
 
     public function remove()
@@ -79,28 +74,31 @@ class User extends Authenticatable
 
     public function uploadAvatar($image)
     {
-        if ($image == null) { return; }
-
+        if($image == null) { return; }
 
         $this->removeAvatar();
-        
+
         $filename = str_random(10) . '.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->avatar = $filename;
         $this->save();
     }
+
     public function removeAvatar()
     {
-        if ($this->avatar !=null) {
+        if($this->avatar != null)
+        {
             Storage::delete('uploads/' . $this->avatar);
         }
     }
 
     public function getImage()
     {
-        if ($this->avatar == null) {
+        if($this->avatar == null)
+        {
             return '/img/no-image.png';
         }
+
         return '/uploads/' . $this->avatar;
     }
 
@@ -118,12 +116,12 @@ class User extends Authenticatable
 
     public function toggleAdmin($value)
     {
-        if ($value == null) {
-            return $this->makeNormal;
+        if($value == null)
+        {
+            return $this->makeNormal();
         }
 
-        return $this->makeAdmin;
-
+        return $this->makeAdmin();
     }
 
     public function ban()
@@ -131,7 +129,6 @@ class User extends Authenticatable
         $this->status = User::IS_BANNED;
         $this->save();
     }
-
 
     public function unban()
     {
@@ -141,11 +138,12 @@ class User extends Authenticatable
 
     public function toggleBan($value)
     {
-        if ($value == null) {
-            $this->unban();
+        if($value == null)
+        {
+            return $this->unban();
         }
-        $this->ban();
-    }
 
+        return $this->ban();
+    }
 
 }

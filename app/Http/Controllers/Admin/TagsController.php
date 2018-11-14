@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tag;
 
 class TagsController extends Controller
 {
@@ -17,8 +16,7 @@ class TagsController extends Controller
     public function index()
     {
         $tags = Tag::all();
-
-        return view('admin.tags.index', ['tags' => $tags]);
+        return view('admin.tags.index', ['tags'=>$tags]);
     }
 
     /**
@@ -39,15 +37,13 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request, [
-            'title' => 'required'
+        $this->validate($request, [
+            'title' =>  'required' //обязательно
         ]);
 
         Tag::create($request->all());
-
         return redirect()->route('tags.index');
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +54,7 @@ class TagsController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('admin.tags.edit', ['tag' => $tag]);
+        return view('admin.tags.edit', ['tag'=>$tag]);
     }
 
     /**
@@ -71,14 +67,14 @@ class TagsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-                'title' => 'required'
-            ]);
-            
-            $tag = Tag::find($id);
+            'title' =>  'required' //обязательно
+        ]);
 
-            $tag->update($request->all());
+        $tag = Tag::find($id);
 
-            return redirect()->route('tags.index');
+        $tag->update($request->all());
+
+        return redirect()->route('tags.index');
     }
 
     /**

@@ -7,11 +7,11 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Category extends Model
 {
-				use Sluggable;
+	use Sluggable;
 
     protected $fillable = ['title'];
-				
-    public function posts()	
+
+    public function posts()
     {
     	return $this->hasMany(Post::class);
     }
@@ -22,6 +22,6 @@ class Category extends Model
             'slug' => [
                 'source' => 'title'
             ]
-        ];
+        ]; 
     }
 }

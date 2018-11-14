@@ -3,9 +3,11 @@
                     
                     <aside class="widget news-letter">
                         <h3 class="widget-title text-uppercase text-center">Get Newsletter</h3>
+                        @include('admin.errors')
 
-                        <form action="#">
-                            <input type="email" placeholder="Your email address">
+                        <form action="/subscribe" method="post">
+                        {{csrf_field()}}
+                            <input type="email" placeholder="Your email address" name="email">
                             <input type="submit" value="Subscribe Now"
                                    class="text-uppercase text-center btn btn-subscribe">
                         </form>
@@ -28,13 +30,14 @@
 
                             </div>
                         </div>
+
                         @endforeach
                     </aside>
                     <aside class="widget">
                         <h3 class="widget-title text-uppercase text-center">Featured Posts</h3>
 
                         <div id="widget-feature" class="owl-carousel">
-                            @foreach($featuredPosts as $post)
+                        @foreach($featuredPosts as $post)
                             <div class="item">
                                 <div class="feature-content">
                                     <img src="{{$post->getImage()}}" alt="">
@@ -46,14 +49,12 @@
                                     </a>
                                 </div>
                             </div>
-                            @endforeach
-
+                        @endforeach
                         </div>
                     </aside>
                     <aside class="widget pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
                         @foreach($recentPosts as $post)
-
                         <div class="thumb-latest-posts">
 
 
@@ -70,7 +71,6 @@
                             </div>
                         </div>
                         @endforeach
-
                     </aside>
                     <aside class="widget border pos-padding">
                         <h3 class="widget-title text-uppercase text-center">Categories</h3>

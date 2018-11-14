@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -40,36 +40,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach($users as $user)
+                @foreach($users as $user)
+	                <tr>
+	                  <td>{{$user->id}}</td>
+	                  <td>{{$user->name}}</td>
+	                  <td>{{$user->email}}</td>
+	                  <td>
+	                    <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="150">
+	                  </td>
+	                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
+	                  {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
+	                  <button onclick="return confirm('are you sure?')" type="submit" class="delete">
+	                   <i class="fa fa-remove"></i>
+	                  </button>
 
-
-
-                  <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>
-                      <img src="{{$user->getImage()}}" alt="" class="img-responsive" width="150">
-                    </td>
-                    <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a> 
-
-                      {{Form::open(['route'=>['users.destroy', $user->id], 'method'=>'delete'])}}
-
-                    <button onclick="return confirm('are you sure?')" type="submit" class="delete"><i class="fa fa-remove"></i></button>
-
-                    
-
-                    {{Form::close()}}
-
-                    </td>
-                  </tr>
-
-
-
-
-
-                  @endforeach
-                
+	                   {{Form::close()}}
+	                  </td>
+	                </tr>
+                @endforeach
 
                 </tfoot>
               </table>

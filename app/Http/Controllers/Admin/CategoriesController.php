@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -12,39 +12,43 @@ class CategoriesController extends Controller
     {
     	$categories = Category::all();
 
-    	return view('admin.categories.index', ['categories' => $categories]);
+    	return view('admin.categories.index', ['categories'	=>	$categories]);
     }
+
     public function create()
     {
     	return view('admin.categories.create');
     }
+
     public function store(Request $request)
     {
     	$this->validate($request, [
-    		'title' => 'required'
+    		'title'	=>	'required' //обязательно
     	]);
 
     	Category::create($request->all());
-
     	return redirect()->route('categories.index');
     }
+
     public function edit($id)
     {
     	$category = Category::find($id);
-    	return view('admin.categories.edit', ['category' => $category]);
+    	return view('admin.categories.edit', ['category'=>$category]);
     }
+
     public function update(Request $request, $id)
     {
-	    	$this->validate($request, [
-	    		'title' => 'required'
-	    	]);
-	    	
-    		$category = Category::find($id);
+    	$this->validate($request, [
+    		'title'	=>	'required' //обязательно
+    	]);
 
-    		$category->update($request->all());
+    	$category = Category::find($id);
 
-    		return redirect()->route('categories.index');
+    	$category->update($request->all());
+
+    	return redirect()->route('categories.index');
     }
+
     public function destroy($id)
     {
     	Category::find($id)->delete();
