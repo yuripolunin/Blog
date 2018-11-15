@@ -27,6 +27,6 @@ class SubsController extends Controller
     	$subs = Subscription::where('token', $token)->firstOrFail();
     	$subs->token = null;
     	$subs->save();
-    	return redirect('/')->with('status', 'Ваша почта подтверждена!СПАСИБО!');
+    	return redirect('/')->with('status', 'Вы успешно подтвердили свою почту');
     }
 }

@@ -86,6 +86,13 @@
            </div>
        </div>
    </div>
+   <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               @include('pages.errors')
+           </div>
+       </div>
+   </div>
 	@yield('content')
 
 <!--footer start-->
